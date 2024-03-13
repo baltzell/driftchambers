@@ -12,7 +12,12 @@ $(error $$HIPO_DIR is not set)
 endif
 endif
 
-HIPOCFLAGS  := -I$(HIPO_DIR)/include/hipo4 -I../../install/include
+ifndef PREFIX
+$(warning Using default installation path in build tree)
+PREFIX := $(shell pwd)/../../install
+endif
+
+HIPOCFLAGS  := -I$(HIPO_DIR)/include/hipo4 -I$(PREFIX)/include
 HIPOLIBS    := -L$(HIPO_DIR)/lib -lhipo4
 
 LZ4LIBS     := -L$(HIPO_DIR)/lz4/lib -llz4 -lpthread
@@ -29,8 +34,9 @@ OBJECTS2 = denoise2.o drift.o
 all:  denoise2 install
 
 install:
-	mkdir -p ../../install/bin
-	install denoise2.exe ../../install/bin
+	install -d $(PREFIX)/bin $(PREFIX)/share/denoising/network
+	install denoise2.exe $(PREFIX)/bin
+	install network/* $(PREFIX)/share/denoising/network
 
 denoise: $(OBJECTS)
 	$(CXX) -o denoise.exe $(OBJECTS)  $(HIPOLIBS) $(LZ4LIBS)
