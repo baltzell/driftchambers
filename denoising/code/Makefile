@@ -8,7 +8,7 @@ $(error HIPO_DIR is not set)
 HIPO_DIR=../..
 endif
 
-HIPOCFLAGS  := -I$(HIPO_DIR)/hipo4 -I../../install/include
+HIPOCFLAGS  := -I$(HIPO_DIR)/include/hipo4 -I../../install/include
 HIPOLIBS    := -L$(HIPO_DIR)/lib -lhipo4
 
 LZ4LIBS     := -L$(HIPO_DIR)/lz4/lib -llz4 -lpthread
