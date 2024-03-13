@@ -4,7 +4,12 @@
 #********************************************************
 
 ifndef HIPO_DIR
-$(error HIPO_DIR is not set)
+ifdef HIPO
+$(warning $$HIPO_DIR is not set, using $$HIPO instead)
+HIPO_DIR = $(HIPO)
+else
+$(error $$HIPO_DIR is not set)
+endif
 endif
 
 HIPOCFLAGS  := -I$(HIPO_DIR)/include/hipo4 -I../../install/include
