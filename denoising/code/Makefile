@@ -5,7 +5,6 @@
 
 ifndef HIPO_DIR
 $(error HIPO_DIR is not set)
-HIPO_DIR=../..
 endif
 
 HIPOCFLAGS  := -I$(HIPO_DIR)/include/hipo4 -I../../install/include
