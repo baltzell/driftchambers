@@ -36,6 +36,6 @@ frugal: eigen fplus json
 	$(MAKE) -C $@.build
 
 clean:
-	rm -rf *.build 
+	rm -rf *build 
 	$(MAKE) -C denoising/code clean
 
